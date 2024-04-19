@@ -1,14 +1,16 @@
 import java.sql.Connection;
 import Dao.ConnectionProvider;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 public class InsertProduct extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form InsertProduct
      */
     public InsertProduct() {
         initComponents();
+        
     }
 
     /**
@@ -20,107 +22,169 @@ public class InsertProduct extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtPrdctID = new javax.swing.JTextField();
-        txtExpDate = new javax.swing.JTextField();
-        txtPrdctName = new javax.swing.JTextField();
+        jCalendar1 = new com.toedter.calendar.JCalendar();
+        jMonthChooser1 = new com.toedter.calendar.JMonthChooser();
         txtSubmit = new javax.swing.JButton();
+        txtExit = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        txtP_ID = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        txtP_Name = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        txtPrice = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        ExitButton = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        date_chooser1 = new com.toedter.calendar.JDateChooser();
+        date_chooser2 = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        txtPrdctID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPrdctIDActionPerformed(evt);
-            }
-        });
-
-        txtExpDate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtExpDateActionPerformed(evt);
-            }
-        });
-
-        txtPrdctName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPrdctNameActionPerformed(evt);
-            }
-        });
-
         txtSubmit.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtSubmit.setText("SUBMIT");
+        txtSubmit.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         txtSubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtSubmitActionPerformed(evt);
             }
         });
 
+        txtExit.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtExit.setText("Exit");
+        txtExit.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        txtExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtExitActionPerformed(evt);
+            }
+        });
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel3.setText("ADD Product");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(181, 181, 181)
+                .addComponent(jLabel3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("Product ID:");
+
+        txtP_ID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtP_IDActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setText("Product Name:");
 
+        txtP_Name.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtP_NameActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel6.setText("Price:");
+
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel4.setText("Expiration Date:");
 
-        ExitButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        ExitButton.setText("Exit");
-        ExitButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ExitButtonActionPerformed(evt);
-            }
-        });
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel5.setText("Manufactured Date:");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(txtP_Name, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+                    .addComponent(txtP_ID)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtPrice))
+                .addGap(36, 36, 36)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(date_chooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(date_chooser2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtP_ID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(date_chooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtP_Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(date_chooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(251, 251, 251)
-                .addComponent(txtSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(365, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(ExitButton)
-                .addGap(38, 38, 38))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtPrdctName, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(txtPrdctID, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel4)
-                            .addComponent(txtExpDate, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(117, 117, 117)
+                .addComponent(txtSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addComponent(txtExit, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(102, 102, 102)
-                .addComponent(jLabel1)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtPrdctID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtPrdctName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtExpDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
-                .addComponent(txtSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
-                .addComponent(ExitButton)
-                .addGap(18, 18, 18))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(txtExit)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -128,58 +192,49 @@ public class InsertProduct extends javax.swing.JFrame {
 
     private void txtSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSubmitActionPerformed
         // TODO add your handling code here:
-        String Name = txtPrdctName.getText();
-        String ID = txtPrdctID.getText();
-        String ExpDate=txtExpDate.getText();
-       
+       String Name = txtP_Name.getText();
+    String ID = txtP_ID.getText();
+    String Price = txtPrice.getText();
+    
+    try {
+        Connection con = ConnectionProvider.getCon();
+        PreparedStatement ps = con.prepareStatement("insert into Product (P_ID, Name, MfgDate, ExpDate, Price) values (?, ?, ?, ?, ?)");
+        SimpleDateFormat sdf=new SimpleDateFormat("YYYY-MM-dd");
         
-         if (Name.equals("")) {
-            JOptionPane.showMessageDialog(null, "Name field required"); } 
-        
-        else if(ID.equals("")) {
-            JOptionPane.showMessageDialog(null, "ID field required"); } 
-                
-         else if(ExpDate.equals("")) {
-            JOptionPane.showMessageDialog(null, "Brand field required"); } 
-         
-         else{
-          try{
-          Connection con = ConnectionProvider.getCon();
-          PreparedStatement ps = con.prepareStatement("insert into Product (ID,Name,ExpDate) values(?,?,?)");
-          ps.setString(1,ID);
-          ps.setString(2,Name);
-          ps.setString(3,ExpDate);
-           ps.executeUpdate();
-                JOptionPane.showMessageDialog(null,"Added successfull");
-                setVisible(false);
-                new InsertProduct().setVisible(true);
-          }
-          catch(Exception e){
-           JOptionPane.showMessageDialog(null, e);
-          }
-         }
+        String date1=sdf.format(date_chooser1.getDate());
+        String date2=sdf.format(date_chooser2.getDate());
+        ps.setString(1, ID);
+        ps.setString(2, Name);
+        ps.setString(3, date1);
+        ps.setString(4, date2);
+        ps.setString(5, Price);
+        ps.executeUpdate();
+        JOptionPane.showMessageDialog(null, "Added successfully");
+        setVisible(false);
+        new InsertProduct().setVisible(true);
+    } catch (SQLException e) {
+        // Log the error
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(null, "An error occurred while adding the product. Please try again.");
+    }
     }//GEN-LAST:event_txtSubmitActionPerformed
 
-    private void txtPrdctIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrdctIDActionPerformed
+    private void txtP_IDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtP_IDActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtPrdctIDActionPerformed
+    }//GEN-LAST:event_txtP_IDActionPerformed
 
-    private void txtPrdctNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrdctNameActionPerformed
+    private void txtP_NameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtP_NameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtPrdctNameActionPerformed
+    }//GEN-LAST:event_txtP_NameActionPerformed
 
-    private void txtExpDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtExpDateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtExpDateActionPerformed
-
-    private void ExitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitButtonActionPerformed
+    private void txtExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtExitActionPerformed
         // TODO add your handling code here:
        int a = JOptionPane.showConfirmDialog(null, "Do you want to Close Application ?", "Select", JOptionPane.YES_NO_OPTION);
 
         if (a == 0) {
             System.exit(0);
         }
-    }//GEN-LAST:event_ExitButtonActionPerformed
+    }//GEN-LAST:event_txtExitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -217,13 +272,22 @@ public class InsertProduct extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ExitButton;
+    private com.toedter.calendar.JDateChooser date_chooser1;
+    private com.toedter.calendar.JDateChooser date_chooser2;
+    private com.toedter.calendar.JCalendar jCalendar1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField txtExpDate;
-    private javax.swing.JTextField txtPrdctID;
-    private javax.swing.JTextField txtPrdctName;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private com.toedter.calendar.JMonthChooser jMonthChooser1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JButton txtExit;
+    private javax.swing.JTextField txtP_ID;
+    private javax.swing.JTextField txtP_Name;
+    private javax.swing.JTextField txtPrice;
     private javax.swing.JButton txtSubmit;
     // End of variables declaration//GEN-END:variables
 }

@@ -21,20 +21,31 @@ public class Table {
 
             );*/
     
-   /* st.executeUpdate("CREATE TABLE Customer("
+    /*st.executeUpdate("CREATE TABLE Customer("
       + "Name VARCHAR(100),"
       + "Phone INT(11),"
       + "Email VARCHAR(50),"
       + "Address VARCHAR(200),"
-      + " PRIMARY KEY(Phone))"
+      + "Images LONGBLOB, "
+      + "PRIMARY KEY(Phone))"
+    );*/
+
+    
+    /*st.executeUpdate("CREATE TABLE Product("
+      + "P_ID VARCHAR(100),"
+      + "Name VARCHAR(50),"
+      + "MfgDate DATE,"
+      + "ExpDate DATE,"
+      + "Price VARCHAR(10),"
+      + "PRIMARY KEY(P_ID))"
     );*/
     
-   /* st.executeUpdate("CREATE TABLE Product("
-      + "ID VARCHAR(100),"
-      + "Name VARCHAR(50),"
-      + "ExpDate VARCHAR(50))"
-    );
-    */
+   /* st.executeUpdate("CREATE TABLE Login ("
+      + "Serial_No INT NOT NULL AUTO_INCREMENT PRIMARY KEY,"
+      + "Username VARCHAR(50),"
+      + "Password VARCHAR(50)"
+    + ")");*/
+    
   
     
     JOptionPane.showMessageDialog(null,"Table creation and data insertion successfull");
