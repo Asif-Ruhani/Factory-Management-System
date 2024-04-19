@@ -265,8 +265,11 @@ public class CustomerInfo extends javax.swing.JFrame {
     }//GEN-LAST:event_txtBackActionPerformed
 
     private void txtExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtExitActionPerformed
-        // TODO add your handling code here:
-        setVisible(false);
+       int a = JOptionPane.showConfirmDialog(null, "Do you want to Close Application ?", "Select", JOptionPane.YES_NO_OPTION);
+
+        if (a == 0) {
+            System.exit(0);
+        }
     }//GEN-LAST:event_txtExitActionPerformed
 
     /**

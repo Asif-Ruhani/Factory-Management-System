@@ -10,13 +10,14 @@ public class Table {
           Connection con=ConnectionProvider.getCon();
           Statement st=con.createStatement();
           //create table
-   /* st.executeUpdate("CREATE TABLE Worker("
+    /*st.executeUpdate("CREATE TABLE Worker("
                     + "name VARCHAR(200), "
                     + "ID VARCHAR(200), "
                     + "dept VARCHAR(50), "
                     + "phn VARCHAR(50), "
                     + "email VARCHAR(50), "
                     + "salary Varchar(10),"
+                    + "Images LONGBLOB,"
                     + "PRIMARY KEY(ID)) "
 
             );*/

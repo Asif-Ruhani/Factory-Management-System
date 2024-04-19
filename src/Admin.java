@@ -128,7 +128,7 @@ public class Admin extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         //This is worker button
-        new Worker().setVisible(true);
+        new WorkerInfo().setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
