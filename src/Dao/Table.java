@@ -38,6 +38,7 @@ public class Table {
       + "MfgDate DATE,"
       + "ExpDate DATE,"
       + "Price VARCHAR(10),"
+      + "Image LONGBLOB, "
       + "PRIMARY KEY(P_ID))"
     );*/
     

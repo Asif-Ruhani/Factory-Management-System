@@ -1,8 +1,13 @@
 import Dao.ConnectionProvider;
 import com.mysql.cj.jdbc.result.ResultSetMetaData;
+import java.awt.Dimension;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,16 +15,22 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Vector;
 import javax.imageio.ImageIO;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 public class WorkerInfo extends javax.swing.JFrame {
           Connection con = ConnectionProvider.getCon();
           Statement st;
           PreparedStatement pst;
           ResultSet rs;
+          
+           String filename=null;
+          byte[] customer_image=null;
           
           
     /**
@@ -28,6 +39,9 @@ public class WorkerInfo extends javax.swing.JFrame {
     public WorkerInfo() {
         initComponents();
         ShowData();
+        Toolkit toolkit= getToolkit();
+        Dimension size=toolkit.getScreenSize();
+        setLocation(size.width/2-getWidth()/2,size.height/2-getHeight()/2);
     }
     
      public void ShowData(){
@@ -83,6 +97,8 @@ public class WorkerInfo extends javax.swing.JFrame {
         jPanel8 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         comboDeptTable = new javax.swing.JComboBox<>();
+        txtSearchTable = new javax.swing.JTextField();
+        btnSearchTable = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
@@ -212,6 +228,16 @@ public class WorkerInfo extends javax.swing.JFrame {
                 "Name", "ID", "Department", "Phone", "Email", "Salary"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
+        jTable1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTable1KeyReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jPanel8.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -221,25 +247,45 @@ public class WorkerInfo extends javax.swing.JFrame {
 
         comboDeptTable.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Finance", "Marketing", "Design", "Maintenance", "Sales", " " }));
 
+        txtSearchTable.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSearchTableKeyReleased(evt);
+            }
+        });
+
+        btnSearchTable.setText("Search");
+        btnSearchTable.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnSearchTable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchTableActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(287, 287, 287)
+                .addGap(25, 25, 25)
                 .addComponent(jLabel14)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(comboDeptTable, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(237, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addComponent(comboDeptTable, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(101, 101, 101)
+                .addComponent(txtSearchTable, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnSearchTable, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
+                .addGap(25, 25, 25)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
-                    .addComponent(comboDeptTable, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addComponent(comboDeptTable, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSearchTable, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSearchTable, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -296,7 +342,7 @@ public class WorkerInfo extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(252, 252, 252)
                 .addComponent(txtAdd)
-                .addContainerGap(215, Short.MAX_VALUE))
+                .addContainerGap(219, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -450,6 +496,11 @@ public class WorkerInfo extends javax.swing.JFrame {
 
         btnUpdate.setText("Update");
         btnUpdate.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
 
         btnDelete.setText("Delete");
         btnDelete.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -459,8 +510,13 @@ public class WorkerInfo extends javax.swing.JFrame {
             }
         });
 
-        btnChange.setText("Change");
+        btnChange.setText("Change Image");
         btnChange.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnChange.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChangeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -647,6 +703,120 @@ public class WorkerInfo extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnExitActionPerformed
 
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        String name=txtNam.getText();
+        String id=txtIDEN.getText();
+        String dept=txtDept.getText();
+        String phn=txtPhn.getText();
+        String email=txtEmail.getText();
+        String salary=txtSalary.getText();
+        
+        try{
+           Connection con = ConnectionProvider.getCon();
+           pst = con.prepareStatement("update worker set name=?,dept=?,phn=?,email=?,salary=?,Images=? WHERE id=?");
+           pst.setString(1,name);
+           pst.setString(2,dept);
+           pst.setString(3,phn);
+           pst.setString(4,email);
+           pst.setString(5,salary);
+           
+           ByteArrayOutputStream baos = new ByteArrayOutputStream();
+           ImageIO.write(ImageIO.read(new File(filename)), "jpg", baos);
+           byte[] imageBytes = baos.toByteArray();
+           pst.setBytes(6, imageBytes);
+           pst.setString(7,id);
+           
+           pst.executeUpdate();
+           new WorkerInfo().setVisible(true);
+        }
+        catch(Exception e){
+         JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeActionPerformed
+        JFileChooser chooser = new JFileChooser();
+         chooser.showOpenDialog(null);
+         File f=chooser.getSelectedFile();
+         filename=f.getAbsolutePath();
+         ImageIcon imageIcon = new ImageIcon(new ImageIcon(filename).getImage().getScaledInstance(lbl_Images.getWidth(),lbl_Images.getHeight(),Image.SCALE_SMOOTH));
+         lbl_Images.setIcon(imageIcon);
+         
+         try{
+         File image = new File(filename);
+         FileInputStream file_input_stream = new FileInputStream(image);
+         ByteArrayOutputStream byte_array_op_stream=new ByteArrayOutputStream();
+         byte[] buf= new byte[1024];
+         for(int readNum;(readNum=file_input_stream.read(buf))!=-1;){
+         byte_array_op_stream.write(buf,0,readNum);
+          }
+         customer_image=byte_array_op_stream.toByteArray();
+         }
+         catch(Exception e){
+         JOptionPane.showMessageDialog(null,e);
+         }
+    }//GEN-LAST:event_btnChangeActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+       int i=jTable1.getSelectedRow();
+       TableModel model=jTable1.getModel();
+        String id= model.getValueAt(i,1).toString();
+        String dept= model.getValueAt(i,2).toString();
+       
+       try{
+        pst = con.prepareStatement("SELECT * FROM worker WHERE ID=? AND dept=?");
+               pst.setString(1,id);
+                pst.setString(2,dept);
+                
+                 rs = pst.executeQuery();
+                 if(rs.next()){
+                  txtNam.setText(rs.getString(1));
+                  txtIDEN.setText(rs.getString(2));
+                  txtDept.setText(rs.getString(3));
+                  txtPhn.setText(rs.getString(4));
+                  txtEmail.setText(rs.getString(5));
+                  txtSalary.setText(rs.getString(6));
+                  
+                  byte[] imageData = rs.getBytes("Images");
+          InputStream inputStream = new ByteArrayInputStream(imageData);
+          BufferedImage image = ImageIO.read(inputStream);
+          
+          int scaledWidth = 200; // Set the desired width
+          int scaledHeight = 200; // Set the desired height
+          Image scaledImage = image.getScaledInstance(scaledWidth, scaledHeight, Image.SCALE_SMOOTH);
+
+         // Create an ImageIcon from the scaled image
+         ImageIcon scaledIcon = new ImageIcon(scaledImage);
+
+         // Set the scaled image icon to the JLabel
+         lbl_Images.setIcon(scaledIcon);
+                 }
+       }
+       catch(Exception e){
+        JOptionPane.showMessageDialog(null,e);
+       }
+       
+       
+       
+          
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void txtSearchTableKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchTableKeyReleased
+        DefaultTableModel dft=(DefaultTableModel) jTable1.getModel();
+        TableRowSorter<DefaultTableModel> trs=new TableRowSorter<>(dft);
+        jTable1.setRowSorter(trs);
+        trs.setRowFilter(RowFilter.regexFilter(txtSearchTable.getText()));
+        
+    }//GEN-LAST:event_txtSearchTableKeyReleased
+
+    private void btnSearchTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchTableActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSearchTableActionPerformed
+
+    private void jTable1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTable1KeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -688,6 +858,7 @@ public class WorkerInfo extends javax.swing.JFrame {
     private javax.swing.JButton btnClear;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnExit;
+    private javax.swing.JButton btnSearchTable;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox<String> comboDept;
     private javax.swing.JComboBox<String> comboDeptTable;
@@ -725,5 +896,6 @@ public class WorkerInfo extends javax.swing.JFrame {
     private javax.swing.JTextField txtPhn;
     private javax.swing.JTextField txtSalary;
     private javax.swing.JButton txtSearch;
+    private javax.swing.JTextField txtSearchTable;
     // End of variables declaration//GEN-END:variables
 }

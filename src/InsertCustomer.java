@@ -1,6 +1,8 @@
 
 import Dao.ConnectionProvider;
+import java.awt.Dimension;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -19,6 +21,9 @@ public class InsertCustomer extends javax.swing.JFrame {
     
     public InsertCustomer() {
         initComponents();
+         Toolkit toolkit= getToolkit();
+        Dimension size=toolkit.getScreenSize();
+        setLocation(size.width/5-getWidth()/4,size.height/2-getHeight()/2);
     }
 
     @SuppressWarnings("unchecked")

@@ -1,4 +1,6 @@
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import javax.swing.*;
 
 
@@ -7,6 +9,9 @@ public class Admin extends javax.swing.JFrame {
    // private JPasswordField passwordField;
     public Admin() {
         initComponents();
+        Toolkit toolkit= getToolkit();
+        Dimension size=toolkit.getScreenSize();
+        setLocation(size.width/2-getWidth()/2,size.height/2-getHeight()/2);
     }
   /*  public void initComponents(){
      usernameField = new JTextField();
