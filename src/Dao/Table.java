@@ -43,10 +43,10 @@ public class Table {
     );*/
     
    /* st.executeUpdate("CREATE TABLE Login ("
-      + "Serial_No INT NOT NULL AUTO_INCREMENT PRIMARY KEY,"
       + "Username VARCHAR(50),"
-      + "Password VARCHAR(50)"
-    + ")");*/
+      + "Password VARCHAR(50),"
+      + "PRIMARY KEY(Username))"
+    );*/
     
   
     

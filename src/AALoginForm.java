@@ -48,6 +48,7 @@ public class AALoginForm extends javax.swing.JFrame {
         txtPassword = new javax.swing.JPasswordField();
         txtLogin = new javax.swing.JButton();
         txtReset = new javax.swing.JButton();
+        btnExit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,14 +69,14 @@ public class AALoginForm extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(63, 63, 63)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -102,8 +103,22 @@ public class AALoginForm extends javax.swing.JFrame {
         });
 
         txtReset.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtReset.setText("Reset");
+        txtReset.setText("Forgot Password");
         txtReset.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        txtReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtResetActionPerformed(evt);
+            }
+        });
+
+        btnExit.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnExit.setText("Exit");
+        btnExit.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExitActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -111,11 +126,15 @@ public class AALoginForm extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(txtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                .addComponent(txtReset, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(47, Short.MAX_VALUE)
+                .addComponent(txtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41)
+                .addComponent(txtReset, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(112, 112, 112)
+                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -123,38 +142,52 @@ public class AALoginForm extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtLogin)
-                    .addComponent(txtReset))
-                .addGap(0, 26, Short.MAX_VALUE))
+                    .addComponent(txtReset, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE))
+                .addGap(10, 10, 10)
+                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txtResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtResetActionPerformed
+        new ResetPassword().setVisible(true);
+    }//GEN-LAST:event_txtResetActionPerformed
+
     private void txtLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLoginActionPerformed
         // TODO add your handling code here:
         try{
-         Connection con = ConnectionProvider.getCon();
-         pst=con.prepareStatement("select * from login WHERE Username=? AND Password=?");
-         pst.setString(1,txtUsername.getText());
-         pst.setString(2,txtPassword.getText());
-         rs = pst.executeQuery();
-         
-         if(rs.next()){
-         //JOptionPane.showMessageDialog(null, "Username & Password Matched");
-         new Admin().setVisible(true);
-         setVisible(false);
-         }
-         else{
-         JOptionPane.showMessageDialog(null, "Incorrect Username or Password");
-        // txtUsername.setText("");
-         //txtPassword.setText("");
-         }
+            Connection con = ConnectionProvider.getCon();
+            pst=con.prepareStatement("select * from login WHERE Username=? AND Password=?");
+            pst.setString(1,txtUsername.getText());
+            pst.setString(2,txtPassword.getText());
+            rs = pst.executeQuery();
+
+            if(rs.next()){
+                //JOptionPane.showMessageDialog(null, "Username & Password Matched");
+                new Admin().setVisible(true);
+                setVisible(false);
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Incorrect Username or Password");
+                // txtUsername.setText("");
+                //txtPassword.setText("");
+            }
         }
         catch(Exception e){
-        JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_txtLoginActionPerformed
+
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+         int a = JOptionPane.showConfirmDialog(null, "Do you want to Close Application ?", "Select", JOptionPane.YES_NO_OPTION);
+
+        if (a == 0) {
+            System.exit(0);
+        }
+    }//GEN-LAST:event_btnExitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -193,6 +226,7 @@ public class AALoginForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnExit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
