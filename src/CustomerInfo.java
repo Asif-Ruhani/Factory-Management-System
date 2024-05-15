@@ -330,17 +330,25 @@ public class CustomerInfo extends javax.swing.JFrame {
             System.exit(0);
         }
     }//GEN-LAST:event_txtExitActionPerformed
+private CustomerOperation customerOperationWindow; 
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-       int i=jTable1.getSelectedRow();
-       TableModel model=jTable1.getModel();
-       /*String msg1=(String) model.getValueAt(i,0);
-       String msg2=(String) model.getValueAt(i,1);
-      String msg3=(String) model.getValueAt(i,2);
-       String msg4=(String) model.getValueAt(i,3);
-       new CustomerOperation(msg1,msg2,msg3,msg4).setVisible(true);*/
-        String msg2=(String) model.getValueAt(i,1);
-       new CustomerOperation(msg2).setVisible(true);
+   int i = jTable1.getSelectedRow();
+    TableModel model = jTable1.getModel();
+    
+    if (i != -1) {
+        String msg2 = (String) model.getValueAt(i, 1);
+
+        
+        if (customerOperationWindow != null) {
+            customerOperationWindow.dispose();
+        }
+
+       
+        customerOperationWindow = new CustomerOperation(msg2);
+        customerOperationWindow.setVisible(true);
+        customerOperationWindow.toFront();
+    }
        
     }//GEN-LAST:event_jTable1MouseClicked
 
