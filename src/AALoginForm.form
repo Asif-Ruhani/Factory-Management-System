@@ -28,7 +28,7 @@
               <EmptySpace pref="47" max="32767" attributes="0"/>
               <Component id="txtLogin" min="-2" pref="179" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-              <Component id="txtReset" min="-2" pref="165" max="-2" attributes="0"/>
+              <Component id="btnForgotPassword" min="-2" pref="165" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
@@ -44,7 +44,7 @@
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtReset" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="btnForgotPassword" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="txtLogin" alignment="3" pref="33" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
@@ -153,7 +153,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtLoginActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="txtReset">
+    <Component class="javax.swing.JButton" name="btnForgotPassword">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="14" style="0"/>
@@ -166,7 +166,7 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtResetActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnForgotPasswordActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnExit">

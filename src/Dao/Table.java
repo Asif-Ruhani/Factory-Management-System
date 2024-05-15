@@ -24,7 +24,7 @@ public class Table {
     
     /*st.executeUpdate("CREATE TABLE Customer("
       + "Name VARCHAR(100),"
-      + "Phone INT(11),"
+      + "Phone VARCHAR(20),"
       + "Email VARCHAR(50),"
       + "Address VARCHAR(200),"
       + "Images LONGBLOB, "
@@ -42,11 +42,20 @@ public class Table {
       + "PRIMARY KEY(P_ID))"
     );*/
     
-   /* st.executeUpdate("CREATE TABLE Login ("
+    /*st.executeUpdate("CREATE TABLE Login ("
       + "Username VARCHAR(50),"
       + "Password VARCHAR(50),"
-      + "PRIMARY KEY(Username))"
+      + "Phone VARCHAR(12),"
+      + "PRIMARY KEY (Username),"
+      + "FOREIGN KEY (Phone) REFERENCES AdminContact (Phone))"
     );*/
+    
+    /*st.executeUpdate("CREATE TABLE AdminContact ("
+      + "Phone VARCHAR(50),"
+      + "Email VARCHAR(50),"
+      + "PRIMARY KEY (Phone))"
+    );*/
+
     
   
     

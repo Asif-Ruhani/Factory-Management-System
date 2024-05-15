@@ -755,7 +755,7 @@ public class WorkerInfo extends javax.swing.JFrame {
        
        try{
         pst = con.prepareStatement("SELECT * FROM worker WHERE ID=? AND dept=?");
-               pst.setString(1,id);
+                pst.setString(1,id);
                 pst.setString(2,dept);
                 
                  rs = pst.executeQuery();

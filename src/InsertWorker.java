@@ -325,10 +325,16 @@ public class InsertWorker extends javax.swing.JFrame {
         
        else if(Dept.equals("")) {
             JOptionPane.showMessageDialog(null, "Department field required"); }
-        
+       
+       else if(Dept.equals("Select")){
+       JOptionPane.showMessageDialog(null, "Please select the department");
+       }
         else if(phn.equals("")) {
             JOptionPane.showMessageDialog(null, "Phone field required"); } 
         
+        else if(phn.length()<11 || phn.length()>11){
+        JOptionPane.showMessageDialog(null, "Phone number should be exactly 11 digits");
+        }
         
         else {
             try {

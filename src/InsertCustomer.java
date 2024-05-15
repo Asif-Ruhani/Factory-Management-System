@@ -18,6 +18,7 @@ public class InsertCustomer extends javax.swing.JFrame {
      
     String filename=null;
     byte[] customer_image=null;
+    public String mobileNumberPattern = "^[0-9]*$";
     
     public InsertCustomer() {
         initComponents();
@@ -204,6 +205,13 @@ public class InsertCustomer extends javax.swing.JFrame {
         
         else if(Phone.equals("")) {
             JOptionPane.showMessageDialog(null, "ID field required"); }
+        
+        else if(Phone.equals("")) {
+            JOptionPane.showMessageDialog(null, "Phone field required"); } 
+        
+        else if(Phone.length()<11 || Phone.length()>11){
+        JOptionPane.showMessageDialog(null, "Phone number should be exactly 11 digits");
+        }
         
         else{
         try{

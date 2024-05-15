@@ -344,8 +344,6 @@ public class CustomerOperation extends javax.swing.JFrame {
 
     private void ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitActionPerformed
        setVisible(false);
-       new CustomerOperation().setVisible(true);
-       setVisible(false);
     }//GEN-LAST:event_ExitActionPerformed
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
@@ -379,7 +377,7 @@ public class CustomerOperation extends javax.swing.JFrame {
     private void UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateActionPerformed
         // TODO add your handling code here:
         String Name = txtName.getText();
-        String Phone = txtPhone.getText();
+        String Phn = txtPhone.getText();
         String Email = txtEmail.getText();
         String Address = txtAddress.getText();
         
@@ -388,20 +386,20 @@ public class CustomerOperation extends javax.swing.JFrame {
         
         
         try{
-        Connection con = ConnectionProvider.getCon();
-                PreparedStatement ps = con.prepareStatement("update customer set Phone=?,Email=?,Address=?,Images=? where Name=?");
+         con = ConnectionProvider.getCon();
+                pst = con.prepareStatement("update customer set Name=?,Email=?,Address=?,Images=? where Phone=?");
                 
-                ps.setString(1,Phone);
-                ps.setString(2,Email);
-                ps.setString(3,Address);
+                pst.setString(1,Name);
+                pst.setString(2,Email);
+                pst.setString(3,Address);
                 
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 ImageIO.write(ImageIO.read(new File(filename)), "jpg", baos);
                 byte[] imageBytes = baos.toByteArray();
-                ps.setBytes(4, imageBytes);
-                ps.setString(5,Name);
+                pst.setBytes(4, imageBytes);
+                pst.setString(5,Phn);
                 
-                ps.executeUpdate();
+                pst.executeUpdate();
                 //JOptionPane.showMessageDialog(null,"Updated successfull");
                 
                new CustomerInfo().setVisible(true);
@@ -449,7 +447,7 @@ public class CustomerOperation extends javax.swing.JFrame {
 
          // Set the scaled image icon to the JLabel
          lbl_img.setIcon(scaledIcon);
-         setVisible(false);
+         
         
     }//GEN-LAST:event_btnClearActionPerformed
 

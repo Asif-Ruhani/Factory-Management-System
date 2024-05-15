@@ -8,6 +8,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 
+
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -47,7 +49,7 @@ public class AALoginForm extends javax.swing.JFrame {
         txtUsername = new javax.swing.JTextField();
         txtPassword = new javax.swing.JPasswordField();
         txtLogin = new javax.swing.JButton();
-        txtReset = new javax.swing.JButton();
+        btnForgotPassword = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -102,12 +104,12 @@ public class AALoginForm extends javax.swing.JFrame {
             }
         });
 
-        txtReset.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtReset.setText("Forgot Password");
-        txtReset.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        txtReset.addActionListener(new java.awt.event.ActionListener() {
+        btnForgotPassword.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnForgotPassword.setText("Forgot Password");
+        btnForgotPassword.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnForgotPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtResetActionPerformed(evt);
+                btnForgotPasswordActionPerformed(evt);
             }
         });
 
@@ -129,7 +131,7 @@ public class AALoginForm extends javax.swing.JFrame {
                 .addContainerGap(47, Short.MAX_VALUE)
                 .addComponent(txtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41)
-                .addComponent(txtReset, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnForgotPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46))
             .addGroup(layout.createSequentialGroup()
                 .addGap(112, 112, 112)
@@ -142,7 +144,7 @@ public class AALoginForm extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtReset, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnForgotPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE))
                 .addGap(10, 10, 10)
                 .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -152,17 +154,27 @@ public class AALoginForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtResetActionPerformed
-        new ResetPassword().setVisible(true);
-    }//GEN-LAST:event_txtResetActionPerformed
+    private void btnForgotPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnForgotPasswordActionPerformed
+
+        String Username=txtUsername.getText();
+        String Password=txtPassword.getText();
+ 
+         new OTP().setVisible(true);
+        
+        
+    }//GEN-LAST:event_btnForgotPasswordActionPerformed
 
     private void txtLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLoginActionPerformed
         // TODO add your handling code here:
+        
+        String Username=txtUsername.getText();
+        String Password=txtPassword.getText();
+       
         try{
-            Connection con = ConnectionProvider.getCon();
+            //Connection con = ConnectionProvider.getCon();
             pst=con.prepareStatement("select * from login WHERE Username=? AND Password=?");
-            pst.setString(1,txtUsername.getText());
-            pst.setString(2,txtPassword.getText());
+            pst.setString(1,Username);
+            pst.setString(2,Password);
             rs = pst.executeQuery();
 
             if(rs.next()){
@@ -227,12 +239,12 @@ public class AALoginForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExit;
+    private javax.swing.JButton btnForgotPassword;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton txtLogin;
     private javax.swing.JPasswordField txtPassword;
-    private javax.swing.JButton txtReset;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }
