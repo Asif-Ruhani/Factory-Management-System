@@ -23,12 +23,12 @@ import javax.swing.table.TableRowSorter;
  *
  * @author Asif Ruhani
  */
-public class Product extends javax.swing.JFrame {
+public class ProductInfo extends javax.swing.JFrame {
 
     /**
      * Creates new form Product
      */
-    public Product() {
+    public ProductInfo() {
         initComponents();
         ShowData();
         Toolkit toolkit= getToolkit();
@@ -339,14 +339,23 @@ public class Product extends javax.swing.JFrame {
         ProductTable.setRowSorter(trs);
         trs.setRowFilter(RowFilter.regexFilter(txtSearchTable.getText()));
     }//GEN-LAST:event_txtSearchTableKeyReleased
-
+   private CustomerOperation ProductOperationWindow;
     private void ProductTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProductTableMouseClicked
-         int i=ProductTable.getSelectedRow();
+       int i=ProductTable.getSelectedRow();
        TableModel model=ProductTable.getModel();
-       String msg1=(String) model.getValueAt(i,0);
-      
+      if (i != -1) {
+        String msg2 = (String) model.getValueAt(i, 0);
+
+        
+        if (ProductOperationWindow != null) {
+            ProductOperationWindow.dispose();
+        }
+
        
-       new ProductOperation(msg1).setVisible(true);
+        ProductOperationWindow = new CustomerOperation(msg2);
+        ProductOperationWindow.setVisible(true);
+        ProductOperationWindow.toFront();
+    }
      
     }//GEN-LAST:event_ProductTableMouseClicked
 
@@ -367,20 +376,21 @@ public class Product extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Product.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProductInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Product.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProductInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Product.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProductInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Product.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProductInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Product().setVisible(true);
+                new ProductInfo().setVisible(true);
             }
         });
     }

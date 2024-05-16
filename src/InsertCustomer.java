@@ -204,10 +204,7 @@ public class InsertCustomer extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Name field required"); }
         
         else if(Phone.equals("")) {
-            JOptionPane.showMessageDialog(null, "ID field required"); }
-        
-        else if(Phone.equals("")) {
-            JOptionPane.showMessageDialog(null, "Phone field required"); } 
+            JOptionPane.showMessageDialog(null, "Phone number field required"); } 
         
         else if(Phone.length()<11 || Phone.length()>11){
         JOptionPane.showMessageDialog(null, "Phone number should be exactly 11 digits");

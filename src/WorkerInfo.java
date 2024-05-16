@@ -681,8 +681,9 @@ public class WorkerInfo extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        new Admin().setVisible(true);
         setVisible(false);
+        new Admin().setVisible(true);
+        
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed

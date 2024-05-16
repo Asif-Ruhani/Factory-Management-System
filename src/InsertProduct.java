@@ -261,7 +261,7 @@ public class InsertProduct extends javax.swing.JFrame {
         ps.setBytes(6, imageBytes);
         ps.executeUpdate();              
         setVisible(false);
-        new Product().setVisible(true);
+        new ProductInfo().setVisible(true);
         new InsertProduct().setVisible(true);
     } 
     

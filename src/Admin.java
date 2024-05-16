@@ -177,7 +177,7 @@ public class Admin extends javax.swing.JFrame {
 
     private void btnProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductActionPerformed
         // This is product button
-        new Product().setVisible(true);
+        new ProductInfo().setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_btnProductActionPerformed
 

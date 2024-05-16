@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
  *
  * @author Asif Ruhani
  */
-public class AALoginForm extends javax.swing.JFrame {
+public class LoginForm extends javax.swing.JFrame {
           Connection con = ConnectionProvider.getCon();
           Statement st;
           PreparedStatement pst;
@@ -27,7 +27,7 @@ public class AALoginForm extends javax.swing.JFrame {
     /**
      * Creates new form LoginForm
      */
-    public AALoginForm() {
+    public LoginForm() {
         initComponents();
         Toolkit toolkit= getToolkit();
         Dimension size=toolkit.getScreenSize();
@@ -218,21 +218,23 @@ public class AALoginForm extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AALoginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AALoginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AALoginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AALoginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AALoginForm().setVisible(true);
+                new LoginForm().setVisible(true);
             }
         });
     }

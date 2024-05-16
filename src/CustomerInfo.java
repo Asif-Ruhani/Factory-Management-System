@@ -42,7 +42,7 @@ public class CustomerInfo extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         btnSearch = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        txtSearch = new javax.swing.JTextField();
+        txtPhone = new javax.swing.JTextField();
         btnClear = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -92,6 +92,11 @@ public class CustomerInfo extends javax.swing.JFrame {
 
         btnClear.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnClear.setText("Clear");
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -104,7 +109,7 @@ public class CustomerInfo extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(19, 19, 19)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -115,7 +120,7 @@ public class CustomerInfo extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSearch)
                 .addGap(18, 18, 18)
@@ -285,7 +290,7 @@ public class CustomerInfo extends javax.swing.JFrame {
        
         //new CustomerOperation().setVisible(true);
         
-        String P_Number = txtSearch.getText(); 
+        String P_Number = txtPhone.getText(); 
         if(P_Number==null) {
             JOptionPane.showMessageDialog(null, "Phone number field required for searching"); }
         else {
@@ -362,6 +367,10 @@ private CustomerOperation customerOperationWindow;
         ShowData();
     }//GEN-LAST:event_btnAddNewCustomerActionPerformed
 
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+       txtPhone.setText("");
+    }//GEN-LAST:event_btnClearActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -412,6 +421,6 @@ private CustomerOperation customerOperationWindow;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton txtExit;
-    private javax.swing.JTextField txtSearch;
+    private javax.swing.JTextField txtPhone;
     // End of variables declaration//GEN-END:variables
 }

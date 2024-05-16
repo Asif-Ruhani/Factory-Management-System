@@ -378,7 +378,7 @@ public class ProductOperation extends javax.swing.JFrame {
            pst.setString(6,P_ID);
            
            pst.executeUpdate();
-           new Product().setVisible(true);
+           new ProductInfo().setVisible(true);
            new ProductOperation().setVisible(true);
         }
         catch(Exception e){
@@ -435,7 +435,7 @@ public class ProductOperation extends javax.swing.JFrame {
             //JOptionPane.showMessageDialog(null, "Data deleted successfully.");
             //System.out.println("Data deleted Successfully");
             setVisible(false);
-            new Product().setVisible(true);
+            new ProductInfo().setVisible(true);
             new ProductOperation().setVisible(true);
         } 
         else {
