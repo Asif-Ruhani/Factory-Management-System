@@ -51,6 +51,7 @@ public class Table {
     );*/
     
     /*st.executeUpdate("CREATE TABLE AdminContact ("
+      + "Name VARCHAR(50),"
       + "Phone VARCHAR(50),"
       + "Email VARCHAR(50),"
       + "PRIMARY KEY (Phone))"
