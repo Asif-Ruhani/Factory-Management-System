@@ -46,7 +46,7 @@ public class CustomerOperation extends javax.swing.JFrame {
         initComponents();
         Toolkit toolkit= getToolkit();
         Dimension size=toolkit.getScreenSize();
-        setLocation(size.width/5-getWidth()/4,size.height/2-getHeight()/2);
+        setLocation(size.width/9-getWidth()/4,size.height/2-getHeight()/2);
     }
     
      public CustomerOperation(String msg1) {
@@ -353,6 +353,11 @@ public class CustomerOperation extends javax.swing.JFrame {
 
     private void RemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveActionPerformed
          String P_Number = txtPhone.getText();
+         
+         int a = JOptionPane.showConfirmDialog(null, "Do you want to delete data ?", "Select", JOptionPane.YES_NO_OPTION);
+
+        if (a == 0) {
+         
     try {
         pst = con.prepareStatement("DELETE FROM customer WHERE Phone = ?");
         pst.setString(1, P_Number);
@@ -361,7 +366,6 @@ public class CustomerOperation extends javax.swing.JFrame {
             //JOptionPane.showMessageDialog(null, "Data deleted successfully.");
             //System.out.println("Data deleted Successfully");
             setVisible(false);
-            new CustomerOperation().setVisible(true);
         } 
         else {
             JOptionPane.showMessageDialog(null, "No data found to delete with phone number: " + P_Number);
@@ -370,8 +374,8 @@ public class CustomerOperation extends javax.swing.JFrame {
     } catch (Exception ex) {
         JOptionPane.showMessageDialog(null, ex);
     }
-    new CustomerInfo().setVisible(true);
-    new CustomerOperation().setVisible(true);
+        
+  }
     }//GEN-LAST:event_RemoveActionPerformed
 
     private void UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateActionPerformed
@@ -384,6 +388,9 @@ public class CustomerOperation extends javax.swing.JFrame {
         String mobileNumberPatter = "\\d{11}";
         String emailPattern = "^[a-zA-Z0-9]+[@]+[a-zA-Z0-9]+[.]+[a-zA-Z0-9]+$";
         
+        int a = JOptionPane.showConfirmDialog(null, "Do you want to update data ?", "Select", JOptionPane.YES_NO_OPTION);
+
+        if (a == 0) {
         
         try{
          con = ConnectionProvider.getCon();
@@ -401,16 +408,15 @@ public class CustomerOperation extends javax.swing.JFrame {
                 
                 pst.executeUpdate();
                 //JOptionPane.showMessageDialog(null,"Updated successfull");
-                
-               new CustomerInfo().setVisible(true);
-                new CustomerOperation().setVisible(true);
+                  setVisible(false);
         }
         
         catch(Exception e){
          JOptionPane.showMessageDialog(null, e);
         }
-        new CustomerInfo().setVisible(true);
-        new CustomerOperation().setVisible(true);
+        }
+       // new CustomerInfo().setVisible(true);
+       // new CustomerOperation().setVisible(true);
         
     }//GEN-LAST:event_UpdateActionPerformed
 

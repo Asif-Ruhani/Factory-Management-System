@@ -24,7 +24,7 @@ public class InsertCustomer extends javax.swing.JFrame {
         initComponents();
          Toolkit toolkit= getToolkit();
         Dimension size=toolkit.getScreenSize();
-        setLocation(size.width/5-getWidth()/4,size.height/2-getHeight()/2);
+        setLocation(size.width/9-getWidth()/4,size.height/2-getHeight()/2);
     }
 
     @SuppressWarnings("unchecked")
@@ -39,7 +39,7 @@ public class InsertCustomer extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        txtSubmit = new javax.swing.JButton();
+        btnSubmit = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         txtExit = new javax.swing.JButton();
@@ -61,11 +61,11 @@ public class InsertCustomer extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel4.setText("Address:");
 
-        txtSubmit.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtSubmit.setText("SUBMIT");
-        txtSubmit.addActionListener(new java.awt.event.ActionListener() {
+        btnSubmit.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnSubmit.setText("SUBMIT");
+        btnSubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSubmitActionPerformed(evt);
+                btnSubmitActionPerformed(evt);
             }
         });
 
@@ -121,7 +121,7 @@ public class InsertCustomer extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(123, 123, 123)
-                        .addComponent(txtSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -140,9 +140,9 @@ public class InsertCustomer extends javax.swing.JFrame {
                                             .addComponent(jLabel3)
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                                 .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(txtPhone, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)))
-                                        .addGap(33, 33, 33))
-                                    .addComponent(jLabel2))
+                                                .addComponent(txtPhone, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE))
+                                            .addComponent(jLabel2))
+                                        .addGap(33, 33, 33)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnImage)
                                     .addComponent(jLabel6)
@@ -182,7 +182,7 @@ public class InsertCustomer extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lbl_img, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(txtSubmit)
+                .addComponent(btnSubmit)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtExit)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -191,7 +191,7 @@ public class InsertCustomer extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSubmitActionPerformed
+    private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         String Name = txtName.getText();
         String Phone = txtPhone.getText();
         String Email = txtEmail.getText();
@@ -227,7 +227,6 @@ public class InsertCustomer extends javax.swing.JFrame {
                 ps.executeUpdate();
                 //JOptionPane.showMessageDialog(null,"Added successfull");
                 setVisible(false);
-                new CustomerInfo().setVisible(true);
                 new InsertCustomer().setVisible(true);
         }
         
@@ -235,7 +234,7 @@ public class InsertCustomer extends javax.swing.JFrame {
          JOptionPane.showMessageDialog(null, e);
         }
         }
-    }//GEN-LAST:event_txtSubmitActionPerformed
+    }//GEN-LAST:event_btnSubmitActionPerformed
 
     private void txtExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtExitActionPerformed
         // TODO add your handling code here:
@@ -277,6 +276,7 @@ public class InsertCustomer extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnImage;
+    private javax.swing.JButton btnSubmit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -290,6 +290,5 @@ public class InsertCustomer extends javax.swing.JFrame {
     private javax.swing.JButton txtExit;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtPhone;
-    private javax.swing.JButton txtSubmit;
     // End of variables declaration//GEN-END:variables
 }

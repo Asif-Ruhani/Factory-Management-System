@@ -25,7 +25,7 @@ public class InsertProduct extends javax.swing.JFrame {
         initComponents();
         Toolkit toolkit= getToolkit();
         Dimension size=toolkit.getScreenSize();
-        setLocation(size.width/5-getWidth()/4,size.height/2-getHeight()/2);
+        setLocation(size.width/12-getWidth()/4,size.height/2-getHeight()/2);
         
     }
 
@@ -241,14 +241,36 @@ public class InsertProduct extends javax.swing.JFrame {
         String Name = txtP_Name.getText();
         String ID = txtP_ID.getText();
         String Price = txtPrice.getText();
-    
+        
+        SimpleDateFormat sdf=new SimpleDateFormat("YYYY-MM-dd");
+        String date1=sdf.format(date_chooser1.getDate());
+        String date2=sdf.format(date_chooser2.getDate());
+        
+        
+        if (ID.equals("")) {
+            JOptionPane.showMessageDialog(null, "Product ID field required"); } 
+        
+         else if(Name.equals("")) {
+            JOptionPane.showMessageDialog(null, "Product Name field required"); } 
+        
+         else if(Price.equals("")) {
+        JOptionPane.showMessageDialog(null, "Product price field required"); } 
+         
+         else if (date1.equals("")) {
+            JOptionPane.showMessageDialog(null, "Manufacturing date required"); }
+        
+        else if (date2.equals("")) {
+            JOptionPane.showMessageDialog(null, "Expiry date required"); } 
+        
+        else if(date2.compareTo(date1)<0) {
+            JOptionPane.showMessageDialog(null, "Expiry date is incorrect");
+        } 
+ 
+       else {
     try {
         Connection con = ConnectionProvider.getCon();
         PreparedStatement ps = con.prepareStatement("insert into Product (P_ID, Name, MfgDate, ExpDate, Price, Image) values (?,?,?,?,?,?)");
-        SimpleDateFormat sdf=new SimpleDateFormat("YYYY-MM-dd");
         
-        String date1=sdf.format(date_chooser1.getDate());
-        String date2=sdf.format(date_chooser2.getDate());
         ps.setString(1, ID);
         ps.setString(2, Name);
         ps.setString(3, date1);
@@ -261,13 +283,14 @@ public class InsertProduct extends javax.swing.JFrame {
         ps.setBytes(6, imageBytes);
         ps.executeUpdate();              
         setVisible(false);
-        new ProductInfo().setVisible(true);
         new InsertProduct().setVisible(true);
     } 
+     
     
     catch (Exception e) {
         JOptionPane.showMessageDialog(null, e);
     }   
+  }
     
    
     }//GEN-LAST:event_txtSubmitActionPerformed

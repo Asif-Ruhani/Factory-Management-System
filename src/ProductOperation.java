@@ -42,7 +42,7 @@ public class ProductOperation extends javax.swing.JFrame {
         initComponents();
         Toolkit toolkit= getToolkit();
         Dimension size=toolkit.getScreenSize();
-        setLocation(size.width/5-getWidth()/4,size.height/2-getHeight()/2);
+        setLocation(size.width/12-getWidth()/4,size.height/2-getHeight()/2);
         setVisible(false);
         
     }
@@ -294,7 +294,7 @@ public class ProductOperation extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSearch)
                     .addComponent(jLabel7))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -308,7 +308,7 @@ public class ProductOperation extends javax.swing.JFrame {
                     .addComponent(btnClear)
                     .addComponent(btnUpdate)
                     .addComponent(btnDelete))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(jButton7)
                 .addGap(22, 22, 22))
         );
@@ -362,7 +362,11 @@ public class ProductOperation extends javax.swing.JFrame {
         String MfgDate=txtMfgDate.getText();
         String ExpDate=txtExpDate.getText();
         String Price=txtPrice.getText();
-       
+         
+        int a = JOptionPane.showConfirmDialog(null, "Do you want to update data ?", "Select", JOptionPane.YES_NO_OPTION);
+
+        if (a == 0) {
+        
            try{
            Connection con = ConnectionProvider.getCon();
            pst = con.prepareStatement("update product set name=?,MfgDate=?,ExpDate=?,Price=?,Image=? WHERE P_ID=?");
@@ -378,11 +382,13 @@ public class ProductOperation extends javax.swing.JFrame {
            pst.setString(6,P_ID);
            
            pst.executeUpdate();
-           new ProductInfo().setVisible(true);
-           new ProductOperation().setVisible(true);
+           //new ProductInfo().setVisible(true);
+           setVisible(false);
+           //new ProductOperation().setVisible(true);
         }
         catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
+        }
         }
         
     }//GEN-LAST:event_btnUpdateActionPerformed
@@ -427,6 +433,10 @@ public class ProductOperation extends javax.swing.JFrame {
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         String P_ID=txtP_ID.getText();
         
+        int a = JOptionPane.showConfirmDialog(null, "Do you want to delete data ?", "Select", JOptionPane.YES_NO_OPTION);
+
+        if (a == 0) {
+        
         try{
         pst = con.prepareStatement("DELETE FROM product WHERE P_ID=?");
         pst.setString(1, P_ID);
@@ -435,8 +445,8 @@ public class ProductOperation extends javax.swing.JFrame {
             //JOptionPane.showMessageDialog(null, "Data deleted successfully.");
             //System.out.println("Data deleted Successfully");
             setVisible(false);
-            new ProductInfo().setVisible(true);
-            new ProductOperation().setVisible(true);
+            //new ProductInfo().setVisible(true);
+            //new ProductOperation().setVisible(true);
         } 
         else {
             JOptionPane.showMessageDialog(null, "No data found to delete with the ID: ");
@@ -445,6 +455,7 @@ public class ProductOperation extends javax.swing.JFrame {
         }
         catch(Exception e){
         JOptionPane.showMessageDialog(null,e);
+        }
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 

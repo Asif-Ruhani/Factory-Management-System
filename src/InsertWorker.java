@@ -305,6 +305,8 @@ public class InsertWorker extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNameActionPerformed
 
+    
+    private WorkerInfo workerinfowindow;
     private void workerSubActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_workerSubActionPerformed
         // TODO add your handling code here:
         String Name = txtName.getText();
@@ -355,8 +357,10 @@ public class InsertWorker extends javax.swing.JFrame {
                 ps.executeUpdate();
                 //JOptionPane.showMessageDialog(null,"Added successfull");
                 setVisible(false);
-                new WorkerInfo().setVisible(true);
                 new InsertWorker().setVisible(true);
+                
+                
+   
                 
             }
             catch(Exception e){
